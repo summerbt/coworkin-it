@@ -1,8 +1,8 @@
 (function () {
     var app = angular.module('gemStore', []);
-    app.controller('StoreController', function () {
-        this.products = gems;
-    });
+    //    app.controller('StoreController', function () {
+    //        this.products = gems;
+    //    });
     app.controller('GalleryController', function () {
         this.current = 0;
         this.setCurrent = function (value) {
@@ -17,6 +17,64 @@
         this.isSelected = function (checkTab) {
             return this.tab === checkTab;
         }
+    });
+    //    app.controller('ReviewController', function () {
+    //
+    //    });
+    app.directive('store', function () {
+        return {
+            restrict: 'E',
+            templateUrl: 'templates/store.html',
+            controller: function () {
+                this.products = gems;
+            },
+            controllerAs: 'store',
+        };
+    });
+    app.directive('productPrice', function () {
+        return {
+            restrict: 'E',
+            templateUrl: 'templates/product-price.html'
+        };
+    });
+    app.directive('productGallery', function () {
+        return {
+            restrict: 'E',
+            templateUrl: 'templates/product-gallery.html'
+        };
+    });
+    app.directive('productNav', function () {
+        return {
+            restrict: 'E',
+            templateUrl: 'templates/product-nav.html'
+        };
+    });
+    app.directive('productDescription', function () {
+        return {
+            restrict: 'E',
+            templateUrl: 'templates/product-description.html'
+        };
+    });
+    app.directive('productSpecs', function () {
+        return {
+            restrict: 'E',
+            templateUrl: 'templates/product-specs.html'
+        }
+    });
+    app.directive('productReview', function () {
+        return {
+            restrict: 'E',
+            templateUrl: 'templates/product-review.html',
+            controller: function () {
+                this.review = {};
+                this.addReview = function (product) {
+                    this.review.createdOn = Date.now();
+                    product.reviews.push(this.review);
+                    this.review = {};
+                };
+            },
+            controllerAs: 'reviewCtrl',
+        };
     });
     var gems = [
         {
@@ -59,7 +117,6 @@
                     full: 'img/gem-08.gif',
                     thumb: 'img/gem-08-thumb.gif'
                 }
-
             ],
             reviews: [
                 {

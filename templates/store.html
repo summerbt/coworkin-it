@@ -1,0 +1,14 @@
+<div class="container-full">
+    <ul class="list-group">
+        <li class="list-group-item" ng-repeat="product in store.products | orderBy: 'price'" ng-show="product.canPurchase">
+            <h3><product-price></product-price></h3>
+            <product-gallery></product-gallery>
+            <section ng-init="tab = 1" ng-controller="PanelController as panel">
+                <product-nav></product-nav>
+                <product-description></product-description>
+                <product-specs></product-specs>
+                <product-review></product-review>
+            </section>
+        </li>
+    </ul>
+</div>
